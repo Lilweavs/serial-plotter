@@ -1,1 +1,6 @@
 # Config file to determine how to parse packet
+ASCII:
+  delimiter: ","
+  end: "\r\n"
+  message:
+    - float

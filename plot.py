@@ -1,5 +1,6 @@
 # Serial Plotter Application
 
+from numpy.core.arrayprint import DatetimeFormat
 from pyqtgraph.Qt import QtCore, QtGui
 from threading import Thread
 import pyqtgraph as pg
@@ -18,17 +19,17 @@ class ScrollingPlot(QtGui.QWidget):
 
         # Desired Frequency (Hz) = 1 / self.FREQUENCY
         # USE FOR TIME.SLEEP (s)
-        self.FREQUENCY = .100
+        self.FREQUENCY = 0.1
 
         # Frequency to update plot (ms)
         # USE FOR TIMER.TIMER (ms)
-        self.TIMER_FREQUENCY = self.FREQUENCY * 1000
+        self.TIMER_FREQUENCY = 100
 
         # Set X Axis range. If desired is [-10,0] then set LEFT_X = -10 and RIGHT_X = 0
         self.LEFT_X = -10
         self.RIGHT_X = 0
         self.X_Axis = np.arange(self.LEFT_X, self.RIGHT_X, self.FREQUENCY)
-        self.buffer = int((abs(self.LEFT_X) + abs(self.RIGHT_X))/self.FREQUENCY)
+        self.buffer = int(10 / self.FREQUENCY)
         self.timeData = [] 
         self.data = []
         # Create Plot Widget 
@@ -54,7 +55,7 @@ class ScrollingPlot(QtGui.QWidget):
     def start(self):
         self.position_update_timer = QtCore.QTimer()
         self.position_update_timer.timeout.connect(self.plot_updater)
-        self.position_update_timer.start(self.get_scrolling_plot_timer_frequency())
+        self.position_update_timer.start(self.TIMER_FREQUENCY)
 
     # Read in data using a thread
     def read_position_thread(self):
@@ -68,19 +69,14 @@ class ScrollingPlot(QtGui.QWidget):
         frequency = self.get_scrolling_plot_frequency()
         self.new_data = []
         self.new_time = []
-        prev_time = time.monotonic_ns()
-        with serial.Serial('COM4', 115200, timeout = 1) as ser:
-            ser.reset_input_buffer()
-            while True:
-                line = ser.readline().strip()
-                s = line.decode('ascii')
+        start_time = time.monotonic_ns()
 
-                if s:
-                    curr_time = time.monotonic_ns()
-                    self.new_data.append(int(s))
-                    self.new_time.append((curr_time - prev_time)*1e-9)
-                    prev_time = curr_time
-
+        while True:
+            curr_time = time.monotonic_ns()
+            self.new_data.append(np.random.randint(0,100))
+            self.new_time.append(curr_time - start_time)
+            time.sleep(self.FREQUENCY)
+            
 
     def plot_updater(self):
 
@@ -88,6 +84,13 @@ class ScrollingPlot(QtGui.QWidget):
         #     del self.data[:1]
         self.data     += self.new_data
         self.timeData += self.new_time
+
+        if len(self.data) > self.buffer:
+            tmp = len(self.data) - self.buffer
+            self.data[:tmp] = []
+            self.timeData[:tmp] = []
+
+
         self.new_data.clear()
         self.new_time.clear()
 
