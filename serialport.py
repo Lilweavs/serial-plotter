@@ -1,6 +1,7 @@
 
 # Handles serial communication
 
+from re import S
 import serial
 import yaml
 
@@ -13,7 +14,7 @@ class SerialInput():
         self.cfg = yaml.full_load(open('cfg.yaml', 'r'))
 
 
-    
+
 
 class SerialObj():
     """Serial object for communication"""
@@ -27,7 +28,15 @@ class SerialObj():
 if __name__ == '__main__':
     a = SerialInput()
 
-    print(a.cfg)
+
+    with serial.Serial('COM4', 115200) as ser:
+        while True:        
+            line = ser.readline().strip()
+            s = line.decode('ascii')
+
+            print(s)
+
+
 
 # with serial.Serial('COM4', 115200, timeout = 1) as ser:
 #             ser.reset_input_buffer()
