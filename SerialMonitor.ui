@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>716</width>
+    <height>383</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="layoutMain" columnstretch="50,0,0,0">
+      <item row="0" column="1" colspan="3">
+       <widget class="QPlainTextEdit" name="plainTextEditSerialViewer">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="plainText">
+         <string/>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="minimumSize">
+         <size>
+          <width>180</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>180</width>
+          <height>1000000</height>
+         </size>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="tabBasic">
+         <attribute name="title">
+          <string>Basic</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <widget class="QPushButton" name="buttonConnect">
+            <property name="text">
+             <string>Connect</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QFormLayout" name="formSerialConnect">
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelPort">
+              <property name="text">
+               <string>Port</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="comboBoxPort"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="labelBaurdrate">
+              <property name="text">
+               <string>Baudrate</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="comboBoxBaudrate"/>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBoxDisplay">
+            <property name="title">
+             <string>Display</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="radioButtonDisplayHEX">
+               <property name="text">
+                <string>ASCII</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupDisplay</string>
+               </attribute>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QRadioButton" name="radioButtonDisplayASCII">
+               <property name="text">
+                <string>HEX</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupDisplay</string>
+               </attribute>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="2">
+              <widget class="QPushButton" name="buttonClear">
+               <property name="text">
+                <string>Clear</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabAdvanced">
+         <attribute name="title">
+          <string>Adv</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="1">
+           <widget class="QGroupBox" name="groupBoxDataBits">
+            <property name="minimumSize">
+             <size>
+              <width>70</width>
+              <height>105</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100000</width>
+              <height>105</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Data Bits</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>8</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>8</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="radioButtonEight">
+               <property name="text">
+                <string>Eight</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupDataBits</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonSeven">
+               <property name="text">
+                <string>Seven</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupDataBits</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonSix">
+               <property name="text">
+                <string>Six</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupDataBits</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonFive">
+               <property name="text">
+                <string>Five</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupDataBits</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="groupBoxParity">
+            <property name="minimumSize">
+             <size>
+              <width>70</width>
+              <height>105</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100000</width>
+              <height>105</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Parity</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            </property>
+            <property name="checkable">
+             <bool>false</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>8</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>8</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="radioButtonNone_2">
+               <property name="text">
+                <string>None</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupParity</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonEven">
+               <property name="text">
+                <string>Even</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupParity</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonOdd">
+               <property name="text">
+                <string>Odd</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupParity</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonMark">
+               <property name="text">
+                <string>Mark</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupParity</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonSpace">
+               <property name="text">
+                <string>Space</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupParity</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QGroupBox" name="groupBoxStopBits">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100000</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Stop Bits</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <property name="spacing">
+              <number>6</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QRadioButton" name="radioButton1Bit">
+               <property name="text">
+                <string>1 Bit</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupStopBits</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButton2Bit">
+               <property name="text">
+                <string>2 Bit</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupStopBits</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QGroupBox" name="groupBoxSFC">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>100000</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Software Flow Control</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="radioButtonOff">
+               <property name="text">
+                <string>Off</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupSFC</string>
+               </attribute>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="radioButtonOn">
+               <property name="text">
+                <string>On</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupSFC</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QGroupBox" name="groupBoxHFC">
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>10000</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Hardware Flow Control</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QRadioButton" name="radioButtonNone">
+               <property name="text">
+                <string>None</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupHFC</string>
+               </attribute>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QRadioButton" name="radioButtonRTSCTS">
+               <property name="text">
+                <string>RTS/CTS</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupHFC</string>
+               </attribute>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QRadioButton" name="radioButtonDSRDTR">
+               <property name="text">
+                <string>DSR/DTR</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">buttonGroupHFC</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEditSerial"/>
+      </item>
+      <item row="1" column="3">
+       <widget class="QComboBox" name="comboBoxSerialEnd">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>75</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>None</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>\r\n</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>\n</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QPushButton" name="buttonSerialSend">
+        <property name="minimumSize">
+         <size>
+          <width>75</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>75</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Send</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupDisplay"/>
+  <buttongroup name="buttonGroupParity"/>
+  <buttongroup name="buttonGroupDataBits"/>
+  <buttongroup name="buttonGroupStopBits"/>
+  <buttongroup name="buttonGroupHFC"/>
+  <buttongroup name="buttonGroupSFC"/>
+ </buttongroups>
+</ui>
