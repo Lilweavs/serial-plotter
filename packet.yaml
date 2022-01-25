@@ -1,0 +1,22 @@
+---
+Binary1:
+  endianness: little
+  Header:
+    Sync: FA
+  Payload:
+    Time: uint32
+    Yaw: float
+    Pitch: float
+    Roll: float
+    Accel:
+      Type: float
+      Num: 3
+    Name:
+      Type: string
+      Num: 8
+    Pad: 
+      Type: pad
+      Num: 4
+  CRC:
+    Type: crc-8
+...
