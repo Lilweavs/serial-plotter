@@ -26,6 +26,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.device = SerialThread()
         self.setupUi(self)
         self.setupSignalsAndSlots()
+        self.data = bytearray()
 
     def setupSignalsAndSlots(self):
         self.buttonConnect.clicked.connect(self._SerialConnect)
@@ -118,13 +119,15 @@ class Window(QMainWindow, Ui_MainWindow):
         
         if ckdBtn == "HEX":
             self.displayMode = ckdBtn
-            tmp = str2hex(self.plainTextEditSerialViewer.toPlainText())
+            tmp = f"{hex2str(self.data)} "
         else:
             self.displayMode = ckdBtn
-            tmp = bytearray.fromhex(self.plainTextEditSerialViewer.toPlainText()).decode()
+            tmp = self.data.decode("ASCII", "replace")
+            tmp = tmp.replace("\r\n", "<CR><LF>\n")
     
         self.plainTextEditSerialViewer.clear()
         self.plainTextEditSerialViewer.insertPlainText(tmp)
+        self.scrollBar.setValue(self.scrollBar.maximum())
 
     def _SetHFC(self, event):
         if event.text() == "RTS/CTS":
@@ -154,15 +157,20 @@ class Window(QMainWindow, Ui_MainWindow):
         if self.device.rxq.qsize():
             size = self.device.rxq.qsize()
             for i in range(size):
+                tmp = self.device.rxq.get()
+                self.data.extend(tmp)
+
+                # self.plainTextEditSerialViewer.insertPlainText(f"{hex2str(tmp)} ")
+
                 if self.displayMode == "ASCII":
-                    self.plainTextEditSerialViewer.insertPlainText(self.device.rxq.get())
+                    tmp = tmp.decode("ASCII", "replace")
+                    tmp = tmp.replace("\r\n", "<CR><LF>\n")
+                    self.plainTextEditSerialViewer.insertPlainText(tmp)
                 else:
-                    # self.plainTextEditSerialViewer.insertPlainText(str2hex(self.device.rxq.get()))
-                    self.plainTextEditSerialViewer.insertPlainText(f"{hex2str(self.device.rxq.get())} ")
-                    
+                    self.plainTextEditSerialViewer.insertPlainText(f"{hex2str(tmp)} ")
+
                 if self.scrollBar.value() + 4 >= (self.scrollBar.maximum()):
                     self.scrollBar.setValue(self.scrollBar.maximum())
-
 
 
 if __name__ == "__main__":

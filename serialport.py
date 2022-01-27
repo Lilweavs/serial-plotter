@@ -67,26 +67,31 @@ class SerialThread(QThread):
                 self.running = True
                 port.reset_input_buffer()
 
-                if self.binary:
-                    while self.running:
-                        if port.in_waiting:
-                            self.rxq.put(port.read(port.in_waiting))                        
-                            # sync = port.read(1)
+                while self.running:
+                    if port.in_waiting:
+                        data = port.read(port.in_waiting)
+                        self.rxq.put(data)
 
-                            # if sync in self.parser.syncs:
-                            #     packet = port.read(self.parser.packets[0].size)
-                            #     crc = self.parser.crcs[0](packet[:-1])
-                            #     print(crc, "hex")
-                            #     print(hex2str(sync) + " " + hex2str(packet))
-                else:
-                    while self.running:
-                        if port.in_waiting:
-                            line = port.read(port.in_waiting)
-                            # line = port.readline()
-                            line = line.decode("ASCII", "replace")
-                            self.rxq.put(line)
-                            # print(line)
-                            # print(hexdump(line))
+                # if self.binary:
+                #     while self.running:
+                #         if port.in_waiting:
+                #             self.rxq.put(port.read(port.in_waiting))                        
+                #             # sync = port.read(1)
+
+                #             # if sync in self.parser.syncs:
+                #             #     packet = port.read(self.parser.packets[0].size)
+                #             #     crc = self.parser.crcs[0](packet[:-1])
+                #             #     print(crc, "hex")
+                #             #     print(hex2str(sync) + " " + hex2str(packet))
+                # else:
+                #     while self.running:
+                #         if port.in_waiting:
+                #             line = port.read(port.in_waiting)
+                #             # line = port.readline()
+                #             line = line.decode("ASCII", "replace")
+                #             self.rxq.put(line)
+                #             # print(line)
+                #             # print(hexdump(line))
         except SerialException as err:
             self.status.emit(1, err)
             print(f"Unable to open port: {err}")

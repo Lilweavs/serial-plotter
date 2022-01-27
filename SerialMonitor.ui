@@ -31,6 +31,12 @@
           <height>0</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <family>Courier New</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -66,6 +72,12 @@
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QPushButton" name="buttonConnect">
+            <property name="font">
+             <font>
+              <family>MS Sans Serif</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Connect</string>
             </property>
